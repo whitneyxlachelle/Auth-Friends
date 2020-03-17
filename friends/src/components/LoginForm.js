@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
-const LoginForm = () => {
-    //console.log(props);
+const LoginForm = (props) => {
+    console.log(props);
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
@@ -20,9 +20,9 @@ const LoginForm = () => {
     const handleSubmit = event => {
         event.preventDefault()
         axios
-        .post("/api/login", credentials)
+        .post("http://localhost:5000/api/login", credentials)
         .then(res => {
-            console.log(res);
+            console.log(res.data);
             localStorage.setItem("token", res.data.token)
         })
         .catch(error => {
