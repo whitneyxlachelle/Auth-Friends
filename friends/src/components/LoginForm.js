@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 
 const LoginForm = (props) => {
-    console.log(props);
+    //console.log(props);
     const [credentials, setCredentials] = useState({
         username: "",
         password: ""
