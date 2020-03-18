@@ -1,5 +1,7 @@
 import React, { useState } from "react";
-import axios from "axios";
+//import axios from "axios";
+
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const LoginForm = (props) => {
     //console.log(props);
@@ -19,11 +21,12 @@ const LoginForm = (props) => {
 
     const handleSubmit = event => {
         event.preventDefault()
-        axios
-        .post("http://localhost:5000/api/login", credentials)
+        axiosWithAuth()
+        .post('http://localhost:5000/api/login', credentials)
         .then(res => {
             console.log(res.data);
-            localStorage.setItem("token", res.data.token)
+            localStorage.setItem('token', res.data.payload);
+            props.history.push('/protected');
         })
         .catch(error => {
             console.log(error);
